@@ -7,6 +7,6 @@ router.get("/:store_id/order", getOrders)
 
 router.get('/order/:order_id', getOneOrder)
 
-router.post("/order", authenticate, addOrder)
+router.post("/order", addOrder)
 
 module.exports = router

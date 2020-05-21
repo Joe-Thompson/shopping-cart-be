@@ -7,31 +7,23 @@ const path = require("path");
 const mongoose = require("mongoose");
 const mongoURI = require("./config/config");
 const passport = require("passport");
-const cors = require("cors");
-const path = require("path");
-const mongoose = require("mongoose");
-const mongoURI = require("./config/config");
-const passport = require("passport");
 const stripeAuth = require("./authentication/stripeAuthentication");
 const authRouter = require("./routes/authRouter");
 const productRouter = require("./routes/productRouter");
 const storeRouter = require("./routes/storeRouter");
 const cartRouter = require("./routes/cartRouter");
+const orderRouter = require("./routes/orderRouter");
 const paymentRouter = require("./routes/paymentRouter");
 const stripeAuthRouter = require("./routes/stripeAuthRouter");
 
-const orderRouter = require("./routes/orderRouter");
-
-server.use(morgan("dev"));
-server.use(helmet());
-server.use(express.json());
-server.use(express.urlencoded({ extended: false }));
 const server = express();
-
 server.use(morgan("dev"));
 server.use(helmet());
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
+
+
+
 
 server.use(cors());
 
@@ -42,6 +34,7 @@ server.use("/api/auth", authRouter);
 server.use("/api/store", productRouter);
 server.use("/api/store", storeRouter);
 server.use("/api/store", cartRouter);
+server.use("/api/store", orderRouter);
 server.use("/api/payment", paymentRouter);
 server.use("/api/auth/stripe", stripeAuthRouter);
 
