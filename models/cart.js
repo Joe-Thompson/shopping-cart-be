@@ -11,8 +11,8 @@ const cartSchema = new mongoose.Schema({
 				type: Number,
 				required: true
 			},
-			variantDetail: {
-				type: String
+			variantId: {
+				type: String //forntEnd must return ID of variant.
 			}
 		}
 	]
