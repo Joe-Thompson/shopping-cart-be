@@ -7,6 +7,8 @@ const path = require('path');
 const mongoose = require('mongoose');
 const mongoURI = require('./config/config');
 const passport = require('passport');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 const stripeAuth = require('./authentication/stripeAuthentication');
 const authRouter = require('./routes/authRouter');
@@ -28,6 +30,7 @@ server.use(cors());
 
 server.use(passport.initialize());
 server.use(passport.session());
+server.use(session((secret: process.env.cartSessionSecret)));
 
 server.use('/api/auth', authRouter);
 server.use('/api/store', productRouter);
@@ -71,7 +74,6 @@ server.get('/', (req, res) => {
 
 server.all('*', (req, res) => {
 	res.status(404).json({ message: 'This URL can not be found' });
-
 });
 
 module.exports = server;
